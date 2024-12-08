@@ -93,6 +93,9 @@
     "helloelement": {
       "type": "object",
       "properties": {
+        "listname": {
+          "type": "string"
+        },
         "title": {
           "type": "string"
         },
