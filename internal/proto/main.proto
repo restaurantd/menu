@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package hello;
+
+import "google/api/annotations.proto";
+
+option go_package = "./pb;pb";
+
+message GetListReq{
+  string list = 1;
+}
+
+message element{
+  string title = 1;
+  int64 price = 2;
+}
+
+message RespListPage{
+  repeated element elements = 1;
+}
+
+message GetProductReq{
+  string name = 1;
+}
+
+message product{
+  string name = 1;
+  string description = 2;
+  int64 price = 3;
+}
+
+service Booking {
+  rpc GetList(GetListReq) returns (RespListPage){
+    option (google.api.http) = {
+      get: "/api/page/get/{list}"
+    };
+  }
+  rpc GetProduct(GetProductReq) returns (product){
+    option (google.api.http) = {
+      get: "/api/product/get/{name}"
+    };
+  }
+}
+
